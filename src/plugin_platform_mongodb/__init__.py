@@ -1,5 +1,6 @@
 """MongoDB for Liminal: the server the app runs on this machine as an instance of its own, its port its own setting,
-databases on other servers beside it (a database plugin, plugin API 2.3: liminal_libs.storage.databases).
+databases on other servers beside it (a database plugin, plugin API 2.3: liminal_libs.storage.databases;
+the platform's, drawn in its Databases section, since 0.2.0: it was plugin-integrator-mongodb).
 
 The user, 2026-11-15: "for the integrator i need plugins for each type of database and in each plugin can setup either
 new databases or connections to existing databases using many different types of IP or IPC methods. each instance in
@@ -31,7 +32,7 @@ from liminal_libs.storage.databases import DatabasePlugin, Instance, Made, Refus
 
 from .apis import APIS, MONGODB
 
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 LOCAL = "local"  # its own instance: the server here
 MARKER = "liminal_instance"  # the collection a database made here says what it is in
 PORT_VAR = "LIMINAL_MONGO_PORT"  # where the server here's port is kept: what liminal-libs' mongo.py reads
@@ -222,7 +223,7 @@ class MongodbPlugin(DatabasePlugin):
                              "never shown")
             try:
                 db[MARKER].insert_one({"_id": "instance", "name": instance.name, "made": instance.at or now_iso(),
-                                       "holds": list(instance.holds), "by": f"plugin-integrator-mongodb {__version__}"})
+                                       "holds": list(instance.holds), "by": f"plugin-platform-mongodb {__version__}"})
             except Exception:
                 # No database without its marker, so nothing half made is left: the role and its kept sign-in are
                 # taken back (the review of 2026-11-21, item 26; a retry's createUser failed on the role left here).

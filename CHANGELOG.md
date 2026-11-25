@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.2.0 (2026-11-25)
+
+Renamed `plugin-platform-mongodb` (the package `plugin_platform_mongodb`; it was `plugin-integrator-mongodb`): a platform
+plugin of the Databases section (Monday list item 30, step 3; the user, 2026-11-25: the packages renamed
+`plugin-platform-sqlite`, `-duckdb`, `-mongodb`, plugin names and settings kept). Since liminal-libs 1.90.0
+`DatabasePlugin` is a `PlatformPlugin` (SYSTEM "platform", SECTION "databases"; KIND "database" kept), so the
+platform draws it and the integrator and the charts include the platform to open it.
+
+- Its name is still `mongodb`: every instance kept under `MONGODB_INSTANCES` and every kept sign-in is untouched.
+- The entry point group is the same (`liminal.providers`), as for every platform plugin.
+- A database it makes now says `by: plugin-platform-mongodb 0.2.0` in its `liminal_instance`; ones made before keep
+  what they said.
+- Uninstall `plugin-integrator-mongodb` and take its checkout out of `plugins/` in the same step: the registry refuses a
+  second plugin for one engine.
+- Needs liminal-libs>=1.90.0.
+
 ## 0.1.1 (2026-11-24)
 
 A make that stopped half way no longer fails for good (the review of 2026-11-21, item 26). On a server that signs

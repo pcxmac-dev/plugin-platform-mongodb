@@ -10,13 +10,13 @@ from types import SimpleNamespace
 
 import pytest
 
-import plugin_integrator_mongodb as module
+import plugin_platform_mongodb as module
 from liminal_libs import mongo, mounts
 from liminal_libs.apps import EnvironmentLogin
 from liminal_libs.apps.authorization import Unauthorized
 from liminal_libs.storage import databases
 from liminal_libs.storage.databases import Refusal
-from plugin_integrator_mongodb import DATABASE, MARKER, MongodbPlugin, __version__
+from plugin_platform_mongodb import DATABASE, MARKER, MongodbPlugin, __version__
 
 
 class OperationFailure(Exception):
@@ -325,7 +325,7 @@ def test_a_new_database_gets_a_role_of_its_own_where_the_server_signs_in(mongos)
     assert made["lines"][0] == f"the database notes made on 127.0.0.1:27017 (its {MARKER} collection says what it is)"
     (doc,) = here["dbs"]["notes"][MARKER]
     assert doc == {"_id": "instance", "name": "notes", "made": plugin.instance("notes").at, "holds": ["documents"],
-                   "by": f"plugin-integrator-mongodb {__version__}"}
+                   "by": f"plugin-platform-mongodb {__version__}"}
     assert plugin.instance("notes").auth is False and here["made"] == []
     assert plugin.test("notes")["lines"][2] == f"made here on {doc['made'][:10]} to hold documents"
     with pytest.raises(Refusal, match="there is a database liminal on 127.0.0.1:27017 already: Connect keeps one"):

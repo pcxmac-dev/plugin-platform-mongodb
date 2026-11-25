@@ -9,10 +9,10 @@ import sys
 
 import pytest
 
-import plugin_integrator_mongodb as module
+import plugin_platform_mongodb as module
 from liminal_libs.sources.apis import dead_links, problems, urls
-from plugin_integrator_mongodb import DATABASE
-from plugin_integrator_mongodb import apis as cards
+from plugin_platform_mongodb import DATABASE
+from plugin_platform_mongodb import apis as cards
 
 
 def test_the_card_is_sound_and_links_the_makers_own_pages():

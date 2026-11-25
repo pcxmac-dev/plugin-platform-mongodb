@@ -3,19 +3,19 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "plugin-integrator-mongodb"
-version = "0.1.1"  # the plugin's own release (CHANGELOG.md); the app shows it on the Plugins view
+name = "plugin-platform-mongodb"
+version = "0.2.0"  # the plugin's own release (CHANGELOG.md); the app shows it on the Plugins view
 description = "MongoDB for Liminal: the server the app runs on this machine as an instance of its own, its port its own setting, with databases on other servers beside it."
 readme = "README.md"
 requires-python = ">=3.10"
-# the library it plugs into (the database kind and its instances: liminal_libs.storage.databases, plugin API 2.3, 1.61.0)
-dependencies = ["liminal-libs>=1.61.0", "pymongo>=4.6"]
+# the library it plugs into (the database kind and its instances: liminal_libs.storage.databases, plugin API 2.3; a platform plugin of the Databases section since 1.90.0)
+dependencies = ["liminal-libs>=1.90.0", "pymongo>=4.6"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
 
 [project.entry-points."liminal.providers"]
-mongodb = "plugin_integrator_mongodb"
+mongodb = "plugin_platform_mongodb"
 
 [tool.setuptools.packages.find]
 where = ["src"]
